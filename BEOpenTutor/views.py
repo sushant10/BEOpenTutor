@@ -50,6 +50,12 @@ def all_majors():
 	return jsonify(output)
 
 # add more input error handling 
+'''
+
+	major: search major
+	classreq: search class
+
+'''
 @app.route('/find/<string:major>&<string:classreq>', methods=['GET'])
 def find_tutor(major,classreq):
 	u = mongo.db.Users
