@@ -5,7 +5,7 @@ from flask import (
 
 from run import app
 
-
 @app.route('/', methods=['GET'])
 def get_tasks():
-    return "Working"
+    return 200
+    

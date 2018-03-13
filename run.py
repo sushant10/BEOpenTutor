@@ -1,8 +1,11 @@
 from flask import Flask
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('instance/config.py')
+
+mongo = PyMongo(app)
 
 from BEOpenTutor.views import *
 
