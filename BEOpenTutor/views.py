@@ -49,7 +49,7 @@ def all_majors():
 
 	return jsonify(output)
 
-
+# add more input error handling 
 @app.route('/find/<string:major>&<string:classreq>', methods=['GET'])
 def find_tutor(major,classreq):
 	u = mongo.db.Users
@@ -73,25 +73,52 @@ def find_tutor(major,classreq):
 
 	return jsonify(output), 200
 
+# add more error handling and input issues later
+# make seperate func for error handling
+'''
+	username: user requesting
+	class: class requested
+	major: major requested
+	requestedTutor: tutor requested
 
+'''
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
 	if not request.values :
 		abort(400)
 	u=mongo.db.Users
 	output=[]
+
+	# error handling move to another func 
 	if 'requestedTutor' not in request.values:
 		abort(400)
-
+	if 'class' not in request.values:
+		abort(400)
+	if 'major' not in request.values:
+		abort(400)
 	if type(request.values['username']) !=str:
 		abort(400)
 	if not (u.find({"username":request.values['username']}).count() >0):
 		abort(404)
+	if not (u.find({"username":request.values['username']}).count() >0):
+		abort(404)
 
-	user= u.find({"username":request.values['username']})
-	user['']
 
-	return "Requested"
+	toadd ={
+				"username": request.values['requestedTutor'],
+				"class":{
+				request.values['major']:request.values['class']
+				},
+				"accepted":False,
+				"denied":False
+	}
+	u.update({'username': request.values['username']},{"$push":{"requestedTo":toadd}})
+
+	u.update({"username":request.values['requestedTutor']},{"$set":{"requested":True}})
+	u.update({'username': request.values['requestedTutor']},{"$push":{"requestedAs":request.values['username']}})
+
+
+	return "Requested", 201
 
 
 
