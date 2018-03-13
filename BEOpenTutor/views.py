@@ -1,6 +1,6 @@
 from flask import (
 	Blueprint, render_template, session, g, flash, request, redirect, url_for,
-	current_app, jsonify
+	current_app, jsonify, abort, make_response
 )
 from flask_httpauth import HTTPBasicAuth
 from run import app, mongo
@@ -54,10 +54,10 @@ def find_tutor(major,classreq):
 
 	if len(major) == 0:
 		abort(400)
-	if not (r = m.find("classes":{$all: [classreq]}))
+	if not (m.find({"Classes":{"$all": [classreq]}}).count() >0):
 		abort(400)
-	if not (r = m.find("major":major))
-		abort(404)
+	if not (m.find({"Major":major}).count() >0):
+		abort(400)
 
 	for q in u.find({"major":major}):
 		output.append({
@@ -67,7 +67,7 @@ def find_tutor(major,classreq):
 						'Major' : q['major']
 						})
 
-	return jsonify(output) 
+	return jsonify(output), 200
 
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
