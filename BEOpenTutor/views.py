@@ -1,3 +1,5 @@
+# need to handle more errors!!
+
 from flask import (
 	Blueprint, render_template, session, g, flash, request, redirect, url_for,
 	current_app, jsonify, abort, make_response
@@ -125,6 +127,19 @@ def requestTutor():
 
 
 	return "Requested", 201
+
+@app.route('/requested', methods=['GET'])
+def requested_user():
+	if not request.values :
+		abort(400)
+
+	u=mongo.db.Users
+	output=[]
+	
+	if type(request.values['username']) !=str:
+		abort(400)
+	if not (u.find({"username":request.values['username']}).count() >0):
+		abort(404)
 
 
 
