@@ -35,10 +35,10 @@ def all_users():
 
 @app.route('/find/allmajor', methods=['GET'])
 def all_majors():
-	u = mongo.db.Majors
+	m = mongo.db.Majors
 	output = []
 
-	for q in u.find():
+	for q in m.find():
 		output.append({
 						'Major' : q['Major'],  
 						'Classes': q['Classes'], 
@@ -46,10 +46,18 @@ def all_majors():
 
 	return jsonify(output)
 
-@app.route('/find/<string:major>&<int:classreq>', methods=['GET'])
+@app.route('/find/<string:major>&<string:classreq>', methods=['GET'])
 def find_tutor(major,classreq):
 	u = mongo.db.Users
 	output=[]
+	m = mongo.db.Majors
+
+	if len(major) == 0:
+		abort(400)
+	if not (r = m.find("classes":{$all: [classreq]}))
+		abort(400)
+	if not (r = m.find("major":major))
+		abort(404)
 
 	for q in u.find({"major":major}):
 		output.append({
@@ -63,6 +71,13 @@ def find_tutor(major,classreq):
 
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
-	return None
 
+	return "Requested"
 
+@app.errorhandler(400)
+def bad_search(error):
+    return make_response(jsonify({'error': 'Invalid input'}), 400)
+
+@app.errorhandler(404)
+def not_found(error):
+	return make_response(jsonify({'error': 'Input not found'}), 404)
