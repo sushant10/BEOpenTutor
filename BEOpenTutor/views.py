@@ -6,20 +6,22 @@ from flask_httpauth import HTTPBasicAuth
 from run import app, mongo
 from instance.config import ADMIN_PSW
 
-auth = HTTPBasicAuth()
 
+
+auth = HTTPBasicAuth()
 @auth.get_password
 def get_password(username):
     if username == 'admin':
         return ADMIN_PSW
     return None
 
+
+
 @app.route('/allusers', methods=['GET'])
 @auth.login_required
 def all_users():
 	u = mongo.db.Users
 	output = []
-
 	for q in u.find():
 		output.append({
 						'Username' : q['username'],  
@@ -33,6 +35,7 @@ def all_users():
 
 	return jsonify(output)
 
+
 @app.route('/find/allmajor', methods=['GET'])
 def all_majors():
 	m = mongo.db.Majors
@@ -45,6 +48,7 @@ def all_majors():
 					})
 
 	return jsonify(output)
+
 
 @app.route('/find/<string:major>&<string:classreq>', methods=['GET'])
 def find_tutor(major,classreq):
@@ -69,15 +73,36 @@ def find_tutor(major,classreq):
 
 	return jsonify(output), 200
 
+
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
+	if not request.values :
+		abort(400)
+	u=mongo.db.Users
+	output=[]
+	if 'requestedTutor' not in request.values:
+		abort(400)
+
+	if type(request.values['username']) !=str:
+		abort(400)
+	if not (u.find({"username":request.values['username']}).count() >0):
+		abort(404)
+
+	user= u.find({"username":request.values['username']})
+	user['']
 
 	return "Requested"
+
+
 
 @app.errorhandler(400)
 def bad_search(error):
     return make_response(jsonify({'error': 'Invalid input'}), 400)
 
+
 @app.errorhandler(404)
 def not_found(error):
 	return make_response(jsonify({'error': 'Input not found'}), 404)
+
+
+
