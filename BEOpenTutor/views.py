@@ -31,7 +31,7 @@ def all_users():
 						'Requested To': q['requestedTo']
 					})
 
-	return jsonify({'result' : output})
+	return jsonify(output)
 
 @app.route('/find/allmajor', methods=['GET'])
 def all_majors():
@@ -45,5 +45,9 @@ def all_majors():
 					})
 
 	return jsonify(output)
+
+@app.route('/find/<str:major>&<str:class>', methods=['GET'])
+def find_tutor():
+	
 
 
