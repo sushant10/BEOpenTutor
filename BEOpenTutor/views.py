@@ -46,8 +46,23 @@ def all_majors():
 
 	return jsonify(output)
 
-@app.route('/find/<str:major>&<str:class>', methods=['GET'])
-def find_tutor():
-	
+@app.route('/find/<string:major>&<int:classreq>', methods=['GET'])
+def find_tutor(major,classreq):
+	u = mongo.db.Users
+	output=[]
+
+	for q in u.find({"major":major}):
+		output.append({
+						'Username' : q['username'],  
+						'First Name': q['FirstName'], 
+						'Last Name': q['LastName'], 
+						'Major' : q['major']
+						})
+
+	return jsonify(output) 
+
+@app.route('/find/requestTutor', methods=['POST'])
+def requestTutor():
+	return None
 
 
