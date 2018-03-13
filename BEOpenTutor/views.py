@@ -14,9 +14,9 @@ def get_password(username):
         return ADMIN_PSW
     return None
 
-@app.route('/showall', methods=['GET'])
+@app.route('/allusers', methods=['GET'])
 @auth.login_required
-def main_test():
+def all_users():
 	u = mongo.db.Users
 	output = []
 
@@ -28,11 +28,22 @@ def main_test():
 						'Major' : q['major'], 
 						'Requested': q['requested'], 
 						'Requested As': q['requestedAs'],
-						'Requested To': q['requestedTo'],
-						'Class Requested': q['classRequested']
+						'Requested To': q['requestedTo']
 					})
 
 	return jsonify({'result' : output})
 
+@app.route('/find/allmajor', methods=['GET'])
+def all_majors():
+	u = mongo.db.Majors
+	output = []
+
+	for q in u.find():
+		output.append({
+						'Major' : q['Major'],  
+						'Classes': q['Classes'], 
+					})
+
+	return jsonify(output)
 
 
