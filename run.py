@@ -1,4 +1,10 @@
-from BEOpenTutor import app
+from flask import Flask
 
-if name == '__main__':
+app = Flask(__name__)
+
+app.config.from_pyfile('config.py')
+
+from BEOpenTutor.views import *
+
+if __name__ == '__main__':
 	app.run()
