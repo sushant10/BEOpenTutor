@@ -19,7 +19,7 @@ def get_password(username):
 
 
 '''
-	admin request to view all current users and sensitive data
+	admin request to get all current users and sensitive data
 '''
 @app.route('/allusers', methods=['GET'])
 @auth.login_required
@@ -40,6 +40,10 @@ def all_users():
 	return jsonify(output)
 
 
+'''
+	data sending
+		all majors and classes
+'''
 @app.route('/find/allmajor', methods=['GET'])
 def all_majors():
 	m = mongo.db.Majors
@@ -55,9 +59,15 @@ def all_majors():
 
 # add more input error handling 
 '''
-	major: search major
-	classreq: search class
-
+	data recieving
+		major: search major
+		classreq: search class
+	data sending
+		list of all possible tutors
+			username
+			first name
+			last name
+			major
 '''
 @app.route('/find/<string:major>&<string:classreq>', methods=['GET'])
 def find_tutor(major,classreq):
@@ -82,6 +92,7 @@ def find_tutor(major,classreq):
 
 	return jsonify(output), 200
 
+
 # add more error handling and input issues later
 # make seperate func for error handling
 '''
@@ -91,7 +102,7 @@ def find_tutor(major,classreq):
 		major: major requested
 		requestedTutor: tutor requested
 	data sending back:
-		requested
+		requested //None
 '''
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
@@ -133,8 +144,12 @@ def requestTutor():
 
 '''
 	data recieving 
-	username: current user logged in
-	
+		username: current user logged in
+	data sending
+		list of all requests
+			username
+			first name 
+			last name
 '''
 
 @app.route('/requested', methods=['GET'])
@@ -152,8 +167,16 @@ def requested_user():
 		abort(404)
 
 	for r in user['requestedAs']:
+		tr= u.find({"username":r})
+		output.append({
+						'Username' : tr['username'],  
+						'First Name': tr['FirstName'], 
+						'Last Name': tr['LastName'], 
+						'Major' : tr['major']
+						#'Class requested': 
+						})
 
-	return "hello"
+	return "output"
 
 
 
