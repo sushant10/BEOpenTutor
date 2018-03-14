@@ -18,7 +18,11 @@ def get_password(username):
 	return None
 
 
+'''
+	base '/' to check server status
+'''
 @app.route('/', methods=['GET','POST','PUT'])
+@auth.login_required
 def og():
 	return "Server running!"
 
@@ -170,20 +174,53 @@ def requested_user():
 	if not (user.count() >0):
 		abort(404)
 
-	for r in user['requestedAs']:
-		tr= u.find({"username":r})
-		output.append({
-						'Username' : tr['username'],  
-						'First Name': tr['FirstName'], 
-						'Last Name': tr['LastName'], 
-						'Major' : tr['major']
-						#'Class requested': 
-						})
+	for q in user:
+		for r in q['requestedAs']:
+			tr= u.find({"username":r})
+			for h in tr:
+				flag=True
+				req_to = h['requestedTo']
+				class_req=[]
+				for e in req_to:
+					if e['username']==request.values['username']:
+						class_req.append(e['class'])
+					if e['denied']==True:
+						flag=False
+				
+				if(flag):
+					output.append({
+							'Username' : h['username'],  
+							'First Name': h['FirstName'], 
+							'Last Name': h['LastName'], 
+							'Major' : h['major'],
+							'Class requested': class_req
+							})
 
-	return "output"
+	return jsonify(output)
+
+
+'''
+	data recieved
+		username : logged in user
+		student username : student accepting/ rejected
+		class accepted/rejected : Major + Class in same format
+		accept/denied : True/False
+	data sent back
+		accepted/denied
+'''
+@app.route('/requested/confirm', methods=['POST'])
+def req_confirm():
+	if not request.values :
+		abort(400)
+
+	u=mongo.db.Users
+	output=[]
+	
 
 
 
+
+# ~~~~~~~~~ all error handling methods ~~~~~~~~~~
 
 @app.errorhandler(400)
 def bad_search(error):

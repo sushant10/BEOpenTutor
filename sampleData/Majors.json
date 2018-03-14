@@ -1,0 +1,25 @@
+{
+	"_id":{"$oid":"5aa76046f36d28207a6e8426"},
+	"Major":"Computer Science",
+	"Classes":["121","187","220","230","240","250","311"]
+}
+{
+	"_id":{"$oid":"5aa76081f36d28207a6e8433"},
+	"Major":"Mathematics",
+	"Classes":["131","132","233","235","311","410"]
+}
+{
+	"_id":{"$oid":"5aa760c9f36d28207a6e8454"},
+	"Major":"Computer Engineering",
+	"Classes":["112","122","211","212","331"]
+}
+{
+	"_id":{"$oid":"5aa760f4f36d28207a6e8464"},
+	"Major":"Biochemistry",
+	"Classes":["151","152","250","342","545"]
+}
+{	
+	"_id":{"$oid":"5aa76136f36d28207a6e84c3"},	
+	"Major":"Public Health",
+	"Classes":["100","156","264","330","420"]
+}
