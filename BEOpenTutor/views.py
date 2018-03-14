@@ -13,12 +13,14 @@ from instance.config import ADMIN_PSW
 auth = HTTPBasicAuth()
 @auth.get_password
 def get_password(username):
-    if username == 'admin':
-        return ADMIN_PSW
-    return None
+	if username == 'admin':
+		return ADMIN_PSW
+	return None
 
 
-
+'''
+	admin request to view all current users and sensitive data
+'''
 @app.route('/allusers', methods=['GET'])
 @auth.login_required
 def all_users():
@@ -53,7 +55,6 @@ def all_majors():
 
 # add more input error handling 
 '''
-
 	major: search major
 	classreq: search class
 
@@ -84,11 +85,13 @@ def find_tutor(major,classreq):
 # add more error handling and input issues later
 # make seperate func for error handling
 '''
-	username: user requesting
-	class: class requested
-	major: major requested
-	requestedTutor: tutor requested
-
+	data recieving via post:
+		username: user requesting
+		class: class requested
+		major: major requested
+		requestedTutor: tutor requested
+	data sending back:
+		requested
 '''
 @app.route('/find/requestTutor', methods=['POST'])
 def requestTutor():
@@ -108,7 +111,7 @@ def requestTutor():
 		abort(400)
 	if not (u.find({"username":request.values['username']}).count() >0):
 		abort(404)
-	if not (u.find({"username":request.values['username']}).count() >0):
+	if not (u.find({"username":request.values['requestedTutor']}).count() >0):
 		abort(404)
 
 
@@ -128,6 +131,12 @@ def requestTutor():
 
 	return "Requested", 201
 
+'''
+	data recieving 
+	username: current user logged in
+	
+'''
+
 @app.route('/requested', methods=['GET'])
 def requested_user():
 	if not request.values :
@@ -135,17 +144,23 @@ def requested_user():
 
 	u=mongo.db.Users
 	output=[]
-	
+	user=u.find({"username":request.values['username']})
+
 	if type(request.values['username']) !=str:
 		abort(400)
-	if not (u.find({"username":request.values['username']}).count() >0):
+	if not (user.count() >0):
 		abort(404)
+
+	for r in user['requestedAs']:
+
+	return "hello"
+
 
 
 
 @app.errorhandler(400)
 def bad_search(error):
-    return make_response(jsonify({'error': 'Invalid input'}), 400)
+	return make_response(jsonify({'error': 'Invalid input'}), 400)
 
 
 @app.errorhandler(404)
