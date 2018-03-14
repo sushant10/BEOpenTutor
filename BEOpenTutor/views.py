@@ -18,6 +18,10 @@ def get_password(username):
 	return None
 
 
+@app.route('/', methods=['GET','POST','PUT'])
+def og():
+	return "Server running!"
+
 '''
 	admin request to get all current users and sensitive data
 '''
