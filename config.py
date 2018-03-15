@@ -1,2 +1,2 @@
 DEBUG = True
-MONGO_DBNAME = 'opentutor'
+MONGO_DBNAME = 'openTutor'

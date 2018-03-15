@@ -202,8 +202,8 @@ def requested_user():
 '''
 	data recieved
 		username : logged in user
-		student username : student accepting/ rejected
-		class accepted/rejected : Major + Class in same format
+		requestedStudent : student accepting/ rejected
+		class (accepted/rejected) : Major + Class in same format
 		accept/denied : True/False
 	data sent back
 		accepted/denied
@@ -215,7 +215,22 @@ def req_confirm():
 
 	u=mongo.db.Users
 	output=[]
+
+	user=u.find({"username":request.values['username']})
+	reqStudent= u.find({"username":request.values['requestedStudent']})
 	
+	# check for all data recieved
+	if type(request.values['username']) !=str:
+		abort(400)
+	if type(request.values['requestedStudent'] !=str):
+		abort(400)
+	if not (user.count() >0):
+		abort(404)
+	if not (reqStudent.count() >0):
+		abort(404)
+
+	
+
 
 
 
