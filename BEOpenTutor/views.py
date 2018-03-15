@@ -205,7 +205,7 @@ def requested_user():
 		username : logged in user
 		requestedStudent : student accepting/ rejected
 		class (accepted/rejected) : Major + Class in same format
-		accept/denied : True/False
+		confirm : True/False
 	data sent back
 		accepted/denied
 '''
@@ -230,7 +230,15 @@ def req_confirm():
 	if not (reqStudent):
 		abort(404)
 
-	u.update({'username':user['username']},{"$push":{"InProgress":reqStudent['username']}})
+	if request.values['confirm'] == 'true':
+		u.update({'username':user['username']},{"$push":{"InProgress":reqStudent['username']}})
+		u.update({'username':user['username']},{"$pull":{"requestedAs":reqStudent['username']}})
+		u.update({'username':reqStudent['username'],'requestedTo.username':user['username']},{"$set":{"requestedTo.$.accepted":True}})
+	elif request.values['confirm'] == 'false':
+		u.update({'username':user['username']},{"$pull":{"requestedAs":reqStudent['username']}})
+		u.update({'username':reqStudent['username'],'requestedTo.username':user['username']},{"$set":{"requestedTo.$.denied":True}})
+		
+
 
 	return "Done"
 
