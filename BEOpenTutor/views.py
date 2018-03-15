@@ -42,7 +42,8 @@ def all_users():
 						'Major' : q['major'], 
 						'Requested': q['requested'], 
 						'Requested As': q['requestedAs'],
-						'Requested To': q['requestedTo']
+						'Requested To': q['requestedTo'],
+						'InProgress': q['InProgress']
 					})
 
 	return jsonify(output)
@@ -216,20 +217,22 @@ def req_confirm():
 	u=mongo.db.Users
 	output=[]
 
-	user=u.find({"username":request.values['username']})
-	reqStudent= u.find({"username":request.values['requestedStudent']})
+	user=u.find_one({"username":request.values['username']})
+	reqStudent= u.find_one({"username":request.values['requestedStudent']})
 	
-	# check for all data recieved
+	# check for all data(Class and Major) recieved
 	if type(request.values['username']) !=str:
 		abort(400)
-	if type(request.values['requestedStudent'] !=str):
+	if type(request.values['requestedStudent']) !=str:
 		abort(400)
-	if not (user.count() >0):
+	if not (user):
 		abort(404)
-	if not (reqStudent.count() >0):
+	if not (reqStudent):
 		abort(404)
-	
 
+	u.update({'username':user['username']},{"$push":{"InProgress":reqStudent['username']}})
+
+	return "Done"
 
 
 
