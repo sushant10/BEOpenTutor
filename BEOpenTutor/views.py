@@ -26,6 +26,10 @@ def get_password(username):
 def og():
 	return "Server running!"
 
+@app.route('/signup', methods=['POST'])
+def signup():
+	
+
 '''
 	admin request to get all current users and sensitive data
 '''
