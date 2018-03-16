@@ -26,9 +26,21 @@ def get_password(username):
 def og():
 	return "Server running!"
 
+'''
+	data recieving
+		username:
+		firstName:
+		lastName:
+		major:
+		psw?
+	data sending
+		"registered"//"already exists"
+'''
 @app.route('/register', methods=['POST'])
 def register():
-
+	# error handling for each request.values 
+	if not request.values:
+		abort(400)
 
 '''
 	admin request to get all current users and sensitive data
