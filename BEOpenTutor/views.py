@@ -26,6 +26,7 @@ def get_password(username):
 def og():
 	return "Server running!"
 
+
 '''
 	data recieving
 		username:
@@ -36,10 +37,10 @@ def og():
 	data sending
 		"registered"//"already exists"
 '''
-
 @app.route('/register', methods=['POST'])
 def register():
-	# error handling for each request.values 
+	# error handling for each request.values needs to be done
+	# check for already existing user
 	if not request.values:
 		abort(400)
 	users= mongo.db.Users
@@ -56,7 +57,18 @@ def register():
 	users.insert_one(new_user)
 	return "registered", 200
 
+'''
+	data recieving
+		username:
+	data sending
+		removed 
 
+'''
+@app.route('/remove', methods=['POST'])
+@auth.login_required
+def remove_user():
+	
+	
 
 '''
 	admin request to get all current users and sensitive data
