@@ -41,6 +41,18 @@ def register():
 	# error handling for each request.values 
 	if not request.values:
 		abort(400)
+	users= mongo.db.Users
+	new_user= {
+				"username": request.values['username'],	
+				"FirstName": request.values['firstname'],
+				"LastName": request.values['lastname'],
+				"major": request.values['major'],
+				"requested": false,
+				"requestedAs":[],
+				"requestedTo":[],
+				"InProgress":[]
+	}
+
 
 '''
 	admin request to get all current users and sensitive data
