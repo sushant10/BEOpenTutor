@@ -36,6 +36,7 @@ def og():
 	data sending
 		"registered"//"already exists"
 '''
+
 @app.route('/register', methods=['POST'])
 def register():
 	# error handling for each request.values 
@@ -47,11 +48,14 @@ def register():
 				"FirstName": request.values['firstname'],
 				"LastName": request.values['lastname'],
 				"major": request.values['major'],
-				"requested": false,
+				"requested": False,
 				"requestedAs":[],
 				"requestedTo":[],
 				"InProgress":[]
 	}
+	users.insert_one(new_user)
+	return "registered", 200
+
 
 
 '''
