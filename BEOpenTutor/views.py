@@ -296,7 +296,7 @@ def req_confirm():
 def git_pull():
 	subprocess.call(["php", "autopull.php"])
 	return "Done", 200
-#test
+# test
 
 
 
