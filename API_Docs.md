@@ -1,4 +1,4 @@
-* API Documentation Primitive for OpenTutor
+# API Documentation Primitive for OpenTutor
 
 **Show Users**
 ----
