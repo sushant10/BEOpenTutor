@@ -8,6 +8,8 @@ from flask_httpauth import HTTPBasicAuth
 from run import app, mongo
 from instance.config import ADMIN_PSW
 
+# code for auth
+# @auth.login_required
 
 
 auth = HTTPBasicAuth()
@@ -64,7 +66,6 @@ def register():
 
 '''
 @app.route('/remove', methods=['POST'])
-@auth.login_required
 def remove_user():
 	# error handling for each request.values needs to be done
 	if not request.values:
