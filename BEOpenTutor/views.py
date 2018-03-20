@@ -22,7 +22,6 @@ def get_password(username):
 	base '/' to check server status
 '''
 @app.route('/', methods=['GET','POST','PUT'])
-@auth.login_required
 def og():
 	return "Server running!"
 
