@@ -80,7 +80,6 @@ def remove_user():
 	admin request to get all current users and sensitive data
 '''
 @app.route('/allusers', methods=['GET'])
-@auth.login_required
 def all_users():
 	u = mongo.db.Users
 	output = []
