@@ -67,8 +67,14 @@ def register():
 @app.route('/remove', methods=['POST'])
 @auth.login_required
 def remove_user():
+	# error handling for each request.values needs to be done
+	if not request.values:
+		abort(400)
+	users= mongo.db.Users
+	users.delete_one({"username":request.values['username']})
 	
-	
+	return "removed" , 200
+
 
 '''
 	admin request to get all current users and sensitive data
