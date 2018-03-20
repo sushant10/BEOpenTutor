@@ -7,6 +7,7 @@ from flask import (
 from flask_httpauth import HTTPBasicAuth
 from run import app, mongo
 from instance.config import ADMIN_PSW
+import subprocess
 
 # code for auth
 # @auth.login_required
@@ -291,6 +292,15 @@ def req_confirm():
 
 	return "Done"
 
+@app.route('/update_server', methods=['GET'])
+def git_pull():
+	result = subprocess.run(
+    ['php', 'image.php'],    # program and arguments
+    stdout=subprocess.PIPE,  # capture stdout
+    check=True               # raise exception if program fails
+	)
+	print(result.stdout) 
+	return 200
 
 
 
