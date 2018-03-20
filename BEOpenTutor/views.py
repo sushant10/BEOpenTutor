@@ -294,13 +294,8 @@ def req_confirm():
 
 @app.route('/update_server', methods=['GET'])
 def git_pull():
-	result = subprocess.run(
-    ['php', 'autopull.php'],    # program and arguments
-    stdout=subprocess.PIPE,  # capture stdout
-    check=True               # raise exception if program fails
-	)
-	print(result.stdout) 
-	return 200
+	subprocess.call(["php", "autopull.php"])
+	return "Done", 200
 #test
 
 
