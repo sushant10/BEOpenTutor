@@ -1,4 +1,4 @@
-# API Documentation Primitive for OpenTutor
+# API Documentation for OpenTutor
 
 ## Table of contents
 * [Show all majors](#show-all-majors)
