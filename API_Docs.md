@@ -78,7 +78,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** ```{
+    **Content:** ```[{
                       "username":"john.apple@gmail.com",  
                       "FirstName":"John",
                       "LastName":"Appleseed",
@@ -87,7 +87,11 @@
                       "requestedAs":["xyz@gmail.com","lkia@gmail.com"],
                       "requestedTo":[],
                       "InProgress":[]
-                  }```
+                  },
+                  {
+                    ....
+                  },...
+                    ]```
  
 * **Error Response:**
 
