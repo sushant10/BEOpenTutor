@@ -57,7 +57,7 @@
 
 **Show all Users**
 ----
-  Returns json data about all users.
+  Returns array of json objects about all users.
 
 * **URL**
 
@@ -97,7 +97,7 @@
 
 **Find a Tutor**
 ----
-  Returns json data about all users.
+  Returns array of json objects about possible tutors.
 
 * **URL**
 
@@ -109,10 +109,9 @@
   
 *  **URL Params**
 
-    ```major : string
-       classreq : string
-    ```
-
+    `major : string` <br />
+    `classreq : string`
+    
     *major and class the student wants a tutor for*
 
 * **Data Params**
@@ -141,6 +140,6 @@
 
   * **Code:** 400 NOT FOUND <br />
     **Content:** `{ error : "Input not found" }`<br />
-    **Meaning** *class not found or major not found*
+    **Meaning:** *class not found or major not found*
 
 
