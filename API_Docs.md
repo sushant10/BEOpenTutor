@@ -4,7 +4,7 @@
 * [Show all majors](#show-all-majors)
 * [Show all users](#show-all-users)
 * [Find a tutor](#find-a-tutor)
-
+* [Register](#register)
 
 **Show all majors**
 ----
@@ -149,5 +149,44 @@
   * **Code:** 404 NOT FOUND <br />
     **Content:** `{ error : "error': 'Tutor not found" }`<br />
     **Meaning:** *No tutor match found*
+
+
+**Register**
+----
+  Registers a new user.
+
+* **URL**
+
+  *`/register*`*
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+    N/A
+
+* **Data Params**
+
+    `"username : <string>"`<br />
+    `"first name : <string>"`<br />
+    `"last name : <string>"`<br />
+    `"major : <string>"`<br />
+
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** ```registerd```
+ 
+* **Error Response:**
+
+  * **Code:** 400 NOT FOUND <br />
+    **Content:** `{ error : "Input not found" }`<br />
+    **Meaning:** *class or major or all inputs not provided*
+
+
+
 
 
