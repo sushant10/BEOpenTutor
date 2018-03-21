@@ -157,7 +157,7 @@
 
 * **URL**
 
-  *`/register*`*
+  *`/register`*
 
 * **Method:**
 
