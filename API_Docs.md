@@ -3,11 +3,12 @@
 ## Table of contents
 * [Show all majors](#show-all-majors)
 * [Show all users](#show-all-users)
+* [Find a tutor](#find-a-tutor)
 
 
 **Show all majors**
 ----
-  Returns json data about all users.
+  Returns array of json objects with all majors along with classes.
 
 * **URL**
 
@@ -28,25 +29,25 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `[
-    {
-        "Classes": [
-            "121",
-            "187",
-            "220",
-            ...
-        ],
-        "Major": "Computer Science"
-    },
-    {
-        "Classes": [
-            "131",
-            "132",
-            ....
-        ],
-        "Major": "Mathematics"
-    },...
-                  ]`
+    **Content:** ```[
+                        {
+                            "Classes": [
+                                "121",
+                                "187",
+                                "220",
+                                ...
+                            ],
+                            "Major": "Computer Science"
+                        },
+                        {
+                            "Classes": [
+                                "131",
+                                "132",
+                                ....
+                            ],
+                            "Major": "Mathematics"
+                        },...
+                  ]```
  
 * **Error Response:**
 
@@ -77,7 +78,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{
+    **Content:** ```{
                       "username":"john.apple@gmail.com",  
                       "FirstName":"John",
                       "LastName":"Appleseed",
@@ -86,10 +87,59 @@
                       "requestedAs":["xyz@gmail.com","lkia@gmail.com"],
                       "requestedTo":[],
                       "InProgress":[]
-                  }`
+                  }```
  
 * **Error Response:**
 
   * **Code:** 400 NOT FOUND <br />
     **Content:** `{ error : "Input not found" }`
+
+
+**Find a Tutor**
+----
+  Returns json data about all users.
+
+* **URL**
+
+  *`/find/<string:major>&<string:classreq>`*
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+    ```major : string
+       classreq : string```
+
+    *major and class the student wants a tutor for*
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** ```[
+                        {
+                            "First Name": "xyz",
+                            "Last Name": "abc",
+                            "Major": "Computer Science",
+                            "Username": "xyzabc@gmail.com"
+                        },
+                        {
+                            "First Name": "dfg",
+                            "Last Name": "qwes",
+                            "Major": "Computer Science",
+                            "Username": "dfg532@gmail.com"
+                        }
+                ]```
+ 
+* **Error Response:**
+
+  * **Code:** 400 NOT FOUND <br />
+    **Content:** `{ error : "Input not found" }`
+    **Meaning** *class not found or major not found*
+
 

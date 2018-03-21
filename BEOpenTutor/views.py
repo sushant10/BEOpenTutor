@@ -103,7 +103,7 @@ def all_users():
 	data sending
 		all majors and classes
 '''
-@app.route('/find/allmajor', methods=['GET'])
+@app.route('/allmajors', methods=['GET'])
 def all_majors():
 	m = mongo.db.Majors
 	output = []
