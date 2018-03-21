@@ -57,7 +57,7 @@ def register():
 				"InProgress":[]
 	}
 	users.insert_one(new_user)
-	return "registered", 200
+	return "registered", 201
 
 '''
 	data recieving
