@@ -110,7 +110,8 @@
 *  **URL Params**
 
     ```major : string
-       classreq : string```
+       classreq : string
+    ```
 
     *major and class the student wants a tutor for*
 
@@ -139,7 +140,7 @@
 * **Error Response:**
 
   * **Code:** 400 NOT FOUND <br />
-    **Content:** `{ error : "Input not found" }`
+    **Content:** `{ error : "Input not found" }`<br />
     **Meaning** *class not found or major not found*
 
 
