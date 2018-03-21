@@ -143,7 +143,10 @@
 * **Error Response:**
 
   * **Code:** 400 NOT FOUND <br />
-    **Content:** `{ error : "Input not found" }`<br />
-    **Meaning:** *class not found or major not found*
+    **Content:** `{ error : "Input not found" }`
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "error': 'Tutor not found" }`<br />
+    **Meaning:** *No tutor match found*
 
 

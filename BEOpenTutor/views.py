@@ -96,6 +96,8 @@ def all_users():
 						'InProgress': q['InProgress']
 					})
 
+	if len(output) == 0:
+		return make_response(jsonify({'error': 'Tutor not found'}), 404) 
 	return jsonify(output) , 200
 
 
