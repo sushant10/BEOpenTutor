@@ -96,7 +96,7 @@ def all_users():
 						'InProgress': q['InProgress']
 					})
 
-	return jsonify(output)
+	return jsonify(output) , 200
 
 
 '''
@@ -114,7 +114,7 @@ def all_majors():
 						'Classes': q['Classes'], 
 					})
 
-	return jsonify(output)
+	return jsonify(output) ,200
 
 # add more input error handling 
 '''
