@@ -1,12 +1,17 @@
 # API Documentation Primitive for OpenTutor
 
-**Show all majors (/find/allmajor)**
+## Table of contents
+* [Show all majors](#show-all-majors)
+* [Show all users](#show-all-users)
+
+
+**Show all majors**
 ----
   Returns json data about all users.
 
 * **URL**
 
-  `//find/allmajor`
+  *`/allmajors`*
 
 * **Method:**
 
@@ -49,13 +54,13 @@
     **Content:** `{ error : "Input not found" }`
 
 
-**Show Users (/allusers)**
+**Show all Users**
 ----
   Returns json data about all users.
 
 * **URL**
 
-  `/allusers`
+  *`/allusers`*
 
 * **Method:**
 
