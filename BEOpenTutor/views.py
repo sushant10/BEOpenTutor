@@ -106,7 +106,9 @@ def all_users():
 '''
 @app.route('/<string:username>')
 def get_user(username):
+	output=[]
 
+	return output
 
 '''
 	data sending
