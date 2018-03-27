@@ -107,7 +107,7 @@ def all_users():
 @app.route('/<string:username>')
 def get_user(username):
 
-	
+
 '''
 	data sending
 		all majors and classes
@@ -300,13 +300,13 @@ def req_confirm():
 
 
 	return "Done"
-
+'''
 @app.route('/update_server', methods=['GET'])
 def git_pull():
 	subprocess.call(["php", "autopull.php"])
 	return "Done", 200
 # test
-
+'''
 
 
 
