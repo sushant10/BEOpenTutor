@@ -100,7 +100,14 @@ def all_users():
 		return make_response(jsonify({'error': 'Tutor not found'}), 404) 
 	return jsonify(output) , 200
 
+'''
+	data sending
+		username: data of user
+'''
+@app.route('/<string:username>')
+def get_user(username):
 
+	
 '''
 	data sending
 		all majors and classes
