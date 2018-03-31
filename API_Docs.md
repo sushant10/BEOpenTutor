@@ -169,10 +169,10 @@
 
 * **Data Params**
 
-    `"username : <string>"`<br />
-    `"first name : <string>"`<br />
-    `"last name : <string>"`<br />
-    `"major : <string>"`<br />
+    `"username" : <string>`<br />
+    `"first name" : <string>`<br />
+    `"last name" : <string>`<br />
+    `"major" : <string>`<br />
 
 
 * **Success Response:**
