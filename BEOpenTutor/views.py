@@ -111,7 +111,7 @@ def get_user(username):
 	if not (m.find({"username":username}).count() >0):
 		abort(400)
 
-	for q in u.find():
+	for q in u.find({"username":username}):
 		output.append({
 						'Username' : q['username'],  
 						'First Name': q['FirstName'], 
