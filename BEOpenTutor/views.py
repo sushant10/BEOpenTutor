@@ -104,7 +104,7 @@ def all_users():
 	data sending
 		username: data of user
 '''
-@app.route('/<string:username>')
+@app.route('/getuser/<string:username>')
 def get_user(username):
 	output=[]
 	u = mongo.db.Users
