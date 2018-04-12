@@ -107,6 +107,23 @@ def all_users():
 @app.route('/<string:username>')
 def get_user(username):
 	output=[]
+	u = mongo.db.Users
+	if not (m.find({"username":username}).count() >0):
+		abort(400)
+
+	for q in u.find():
+		output.append({
+						'Username' : q['username'],  
+						'First Name': q['FirstName'], 
+						'Last Name': q['LastName'], 
+						'Major' : q['major'], 
+						'Requested': q['requested'], 
+						'Requested As': q['requestedAs'],
+						'Requested To': q['requestedTo'],
+						'InProgress': q['InProgress']
+					})
+
+	return jsonify(output) , 200
 
 	return output
 
