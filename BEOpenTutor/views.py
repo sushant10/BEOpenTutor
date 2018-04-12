@@ -108,8 +108,7 @@ def all_users():
 def get_user(username):
 	output=[]
 	u = mongo.db.Users
-	if not (m.find({"username":username}).count() >0):
-		abort(400)
+
 
 	for q in u.find({"username":username}):
 		output.append({
@@ -123,9 +122,11 @@ def get_user(username):
 						'InProgress': q['InProgress']
 					})
 
+	if len(output) == 0:
+		return make_response(jsonify({'error': 'User not found'}), 404) 
+
 	return jsonify(output) , 200
 
-	return output
 
 '''
 	data sending
