@@ -28,9 +28,23 @@ def get_password(username):
 def og():
 	return "Server running!"
 
+'''
+	data recieving
+		username:
+		?psw
+	data sending
+		logged in
+'''
+
 @app.route('/login', methods=['POST'])
 def login()
-	
+	if not request.values:
+		abort(400)
+	u= mongo.db.Users
+	if not (u.find({"username":request.values['username']}).count() >0):
+		abort(404)
+	else
+		return "logged in", 201
 
 
 '''
