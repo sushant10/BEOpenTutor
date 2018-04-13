@@ -37,7 +37,7 @@ def og():
 '''
 
 @app.route('/login', methods=['POST'])
-def login()
+def login():
 	# error handling for each request.values needs to be done
 	# add psw functionality
 	if not request.values:
