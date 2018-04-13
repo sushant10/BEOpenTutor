@@ -45,7 +45,7 @@ def login():
 	u= mongo.db.Users
 	if not (u.find({"username":request.values['username']}).count() >0):
 		abort(404)
-	else
+	else:
 		return "logged in", 201
 
 
