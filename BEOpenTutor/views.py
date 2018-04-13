@@ -28,6 +28,10 @@ def get_password(username):
 def og():
 	return "Server running!"
 
+@app.route('/login', methods=['POST'])
+def login()
+	
+
 
 '''
 	data recieving
