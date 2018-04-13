@@ -8,7 +8,7 @@
 	"requestedAs":["dmalone@gmail.com","shubhambatra@gmail.com"],
 	"requestedTo":[],
 	"InProgress":[],
-	"currentClasses":{"1":"250","1":"230","6":"100","2":"235"}
+	"currentClasses":{"1":["250","230"],"6":["100"],"2":["235"]}
 }
 {
 	"_id":{"$oid":"5aa7419df36d28207a6e77d2"},
@@ -24,7 +24,7 @@
 					"accepted":false,
 					"denied":false}],
 	"InProgress":[],
-	"currentClasses":[]
+	"currentClasses":{}
 }
 {	
 	"_id":{"$oid":"5aa74229f36d28207a6e783e"},
@@ -40,5 +40,5 @@
 					"accepted":false,
 					"denied":false}],
 	"InProgress":[],
-	"currentClasses":[]
+	"currentClasses":{}
 }
