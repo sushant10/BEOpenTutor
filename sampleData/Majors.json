@@ -1,25 +1,36 @@
 {
 	"_id":{"$oid":"5aa76046f36d28207a6e8426"},
 	"Major":"Computer Science",
+	"uid":1,
 	"Classes":["121","187","220","230","240","250","311"]
 }
 {
 	"_id":{"$oid":"5aa76081f36d28207a6e8433"},
 	"Major":"Mathematics",
+	"uid":2,
 	"Classes":["131","132","233","235","311","410"]
 }
 {
 	"_id":{"$oid":"5aa760c9f36d28207a6e8454"},
 	"Major":"Computer Engineering",
+	"uid":3,
 	"Classes":["112","122","211","212","331"]
 }
 {
 	"_id":{"$oid":"5aa760f4f36d28207a6e8464"},
 	"Major":"Biochemistry",
+	"uid":4,
 	"Classes":["151","152","250","342","545"]
 }
 {	
 	"_id":{"$oid":"5aa76136f36d28207a6e84c3"},	
 	"Major":"Public Health",
+	"uid":5,
+	"Classes":["100","156","264","330","420"]
+}
+{	
+	"_id":{"$oid":"5aa76136f36d28207a6e84c3"},	
+	"Major":"Kinesiology",
+	"uid":6,
 	"Classes":["100","156","264","330","420"]
 }
